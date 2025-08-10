@@ -5,182 +5,250 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Para Meu Amor</title>
 <style>
-  /* --- Animações principais --- */
-  @keyframes flutuar { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-  @keyframes brilho-texto {0%,100%{text-shadow:2px 2px 5px #aa0044;} 50%{text-shadow:2px 2px 20px #ff0077;} }
-  @keyframes brilho-fundo {0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
-  @keyframes sombra-iframe {0%,100%{box-shadow:0 0 10px #cc0055;} 50%{box-shadow:0 0 25px #ff3399;} }
-  @keyframes scroll-left {0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
-  @keyframes typing { from{width:0} to{width:100%} }
-  @keyframes blink { from,to{border-color:transparent} 50%{border-color:#ff3399;} }
-  @keyframes fall { to{ transform:translateY(110vh) rotate(360deg);} }
-  @keyframes fade-in { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+  /* ======== ANIMAÇÕES ======== */
+  @keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 
+  @keyframes brilho-texto {
+    0%, 100% { text-shadow: 2px 2px 5px #aa0044; }
+    50% { text-shadow: 2px 2px 20px #ff0077; }
+  }
+
+  @keyframes brilho-fundo {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes sombra-iframe {
+    0%, 100% { box-shadow: 0 0 10px #cc0055; }
+    50% { box-shadow: 0 0 25px #ff3399; }
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+
+  /* ======== EFEITO MÁQUINA DE ESCREVER ======== */
+  .typewriter {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid #ff3399;
+    white-space: normal;
+    animation: typing 6s steps(40, end), blink .7s infinite;
+  }
+
+  @keyframes typing {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+
+  /* ======== FUNDO E LAYOUT ======== */
   body {
-    margin:0; padding:0;
-    font-family:Georgia, serif;
-    color:#f0d6e8;
-    text-align:center;
-    background:url('2c07a514-6ed3-4b7e-a23b-bf5eb80327a1.png') no-repeat center center fixed;
-    background-size:cover;
-    background-blend-mode:multiply;
-    background-color:#1a0a1f;
-    overflow-x:hidden;
-  }
-  body::before {
-    content:"";
-    position:fixed; top:0; left:0; right:0; bottom:0;
-    background:linear-gradient(-45deg,#330022,#550044,#330022,#550044);
-    background-size:400% 400%;
-    animation:brilho-fundo 15s ease infinite;
-    opacity:0.6; pointer-events:none; z-index:0;
+    margin: 0; padding: 0;
+    font-family: Georgia, serif;
+    color: #f0d6e8;
+    text-align: center;
+    background: url('2c07a514-6ed3-4b7e-a23b-bf5eb80327a1.png') no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: #1a0a1f;
+    overflow-x: hidden;
   }
 
-  section {
-    position:relative;
-    background-color:rgba(30,10,35,0.85);
-    padding:50px 20px;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    box-sizing:border-box;
-    z-index:1;
-    box-shadow:0 0 40px #660044;
-    border-radius:20px;
-    margin:20px auto;
-    max-width:1000px;
-    animation:fade-in 1s ease;
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(-45deg, #330022, #550044, #330022, #550044);
+    background-size: 400% 400%;
+    animation: brilho-fundo 15s ease infinite;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .overlay {
+    position: relative;
+    background-color: rgba(30, 10, 35, 0.85);
+    padding: 50px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    z-index: 1;
+    box-shadow: 0 0 40px #660044;
+    border-radius: 20px;
   }
 
   h1 {
-    font-size:2.5em;
-    color:#f8c7e8;
-    animation:flutuar 6s ease-in-out infinite, brilho-texto 4s ease-in-out infinite;
-    max-width:700px;
-    line-height:1.4;
-    user-select:none;
-    text-shadow:0 0 10px #aa0044, 0 0 20px #ff3399;
+    font-size: 2.5em;
+    color: #f8c7e8;
+    animation: flutuar 6s ease-in-out infinite, brilho-texto 4s ease-in-out infinite;
+    margin-bottom: 40px;
+    max-width: 700px;
+    line-height: 1.4;
+    user-select: none;
+    text-shadow: 0 0 10px #aa0044, 0 0 20px #ff3399;
   }
-  .typewriter { overflow:hidden; border-right:3px solid #ff3399; white-space:nowrap; animation:typing 6s steps(40,end), blink .7s infinite; }
 
-  /* Carrossel */
-  .imagem {margin-top:20px; display:flex; width:600px; overflow:hidden; border-radius:15px; border:4px solid #aa0044; box-shadow:0 0 20px #cc0055; cursor:grab;}
-  .imagem-track {display:flex; gap:30px; min-width:200%; animation:scroll-left 20s linear infinite;}
-  .imagem-track:hover {animation-play-state:paused;}
-  .imagem img {max-width:300px; border-radius:15px; box-shadow:0 0 20px #cc0055; transition:transform 0.4s ease, box-shadow 0.4s ease;}
-  .imagem img:hover {transform:scale(1.05) rotate(1deg); box-shadow:0 0 35px #ff3399, 0 0 50px #cc0055;}
+  /* ======== CARROSSEL ======== */
+  .imagem {
+    margin-top: 20px;
+    display: flex;
+    width: 600px;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 4px solid #aa0044;
+    box-shadow: 0 0 20px #cc0055;
+  }
 
-  /* Linha do tempo */
-  .timeline {border-left:3px solid #ff3399; padding-left:20px; text-align:left; max-width:700px;}
-  .timeline-item {margin:20px 0; position:relative;}
-  .timeline-item::before {content:"❤"; position:absolute; left:-32px; background:#ff3399; color:#fff; border-radius:50%; width:25px; height:25px; display:flex; align-items:center; justify-content:center; font-size:14px;}
-  .timeline-date {font-weight:bold; color:#ff99cc;}
-  .timeline-text {margin-top:5px;}
+  .imagem-track {
+    display: flex;
+    gap: 30px;
+    min-width: 200%;
+    animation: scroll-left 20s linear infinite;
+  }
 
-  /* Galeria */
-  .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin-top:30px; max-width:800px;}
-  .gallery img {width:100%; border-radius:10px; transition:transform 0.3s, box-shadow 0.3s; box-shadow:0 0 15px #aa0044;}
-  .gallery img:hover {transform:scale(1.1); box-shadow:0 0 25px #ff3399;}
+  .imagem-track:hover { animation-play-state: paused; }
 
-  /* Mensagem final */
-  .final-message {font-size:1.5em; color:#ffb6d9; animation:brilho-texto 3s infinite; margin-top:20px;}
-  
-  /* Pétalas */
-  .petal {position:fixed; top:-10px; border-radius:50%; opacity:0.8; pointer-events:none; animation:fall linear forwards; z-index:2;}
+  .imagem img {
+    max-width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #cc0055;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
 
-  /* Botão de rolagem */
-  .scroll-btn {background:#ff3399; color:white; padding:10px 20px; border:none; border-radius:20px; cursor:pointer; margin-top:20px; font-size:1em; transition:background 0.3s;}
-  .scroll-btn:hover {background:#aa0044;}
-  
-  @media (max-width:650px) {
-    h1 {font-size:1.8em; padding:0 10px;}
-    .imagem {width:90vw;}
-    .imagem img {max-width:90vw;}
+  .imagem img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 0 35px #ff3399, 0 0 50px #cc0055;
+  }
+
+  iframe {
+    margin-top: 30px;
+    border-radius: 12px;
+    animation: sombra-iframe 6s ease-in-out infinite;
+    box-shadow: 0 0 15px #cc0055;
+    width: 300px;
+    max-width: 90vw;
+    height: 80px;
+  }
+
+  /* ======== SEÇÕES EXTRAS ======== */
+  .section {
+    margin-top: 50px;
+    padding: 40px;
+    background: rgba(50, 20, 60, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 0 30px #550044;
+    max-width: 800px;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .timeline-item {
+    padding: 10px;
+    border-left: 3px solid #ff3399;
+    margin-left: 20px;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .gallery img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.1);
+  }
+
+  footer {
+    margin-top: 50px;
+    padding: 20px;
+    font-style: italic;
+    font-size: 1.2em;
+    animation: brilho-texto 5s infinite;
+  }
+
+  /* ======== RESPONSIVIDADE ======== */
+  @media (max-width: 650px) {
+    .imagem { width: 90vw; }
+    h1 { font-size: 1.8em; padding: 0 20px; }
+    .imagem img { max-width: 90vw; }
+    iframe { width: 90vw; }
   }
 </style>
 </head>
 <body>
+  <div class="overlay">
+    <h1 class="typewriter">
+      Amo-te tanto, meu amor... não cante<br>
+      O humano coração com mais verdade...<br>
+      Amo-te como amigo e como amante<br>
+      Numa sempre diversa realidade.
+    </h1>
 
-<!-- Seção 1: Poema -->
-<section id="poema">
-  <h1 class="typewriter">
-    Amo-te tanto, meu amor... não cante<br>
-    O humano coração com mais verdade...<br>
-    Amo-te como amigo e como amante<br>
-    Numa sempre diversa realidade.
-  </h1>
-
-  <div class="imagem">
-    <div class="imagem-track">
-      <img src="amor.png.jpeg" alt="Minha amada" />
-      <img src="fofo.png.jpeg" alt="Imagem fofa" />
-      <img src="gif.png.gif" alt="Gif animado" />
-      <img src="amor.png.jpeg" alt="Minha amada" />
-      <img src="fofo.png.jpeg" alt="Imagem fofa" />
-      <img src="gif.png.gif" alt="Gif animado" />
+    <div class="imagem">
+      <div class="imagem-track">
+        <img src="amor.png.jpeg" alt="Minha amada" />
+        <img src="fofo.png.jpeg" alt="Imagem fofa" />
+        <img src="gif.png.gif" alt="Gif animado" />
+        <img src="amor.png.jpeg" alt="Minha amada" />
+        <img src="fofo.png.jpeg" alt="Imagem fofa" />
+        <img src="gif.png.gif" alt="Gif animado" />
+      </div>
     </div>
+
+    <iframe src="https://open.spotify.com/embed/track/1tLBXifMqnSqLZrk1Rsl8n?utm_source=generator&theme=0"
+      frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+
+    <!-- Seção Linha do Tempo -->
+    <div class="section">
+      <h2>Nossa História</h2>
+      <div class="timeline">
+        <div class="timeline-item"><strong>01/02/2023:</strong> O dia em que nos conhecemos 💖</div>
+        <div class="timeline-item"><strong>14/02/2023:</strong> Primeiro encontro romântico 🌹</div>
+        <div class="timeline-item"><strong>20/03/2023:</strong> Nossa primeira viagem juntos ✈️</div>
+      </div>
+    </div>
+
+    <!-- Galeria -->
+    <div class="section">
+      <h2>Momentos Especiais</h2>
+      <div class="gallery">
+        <img src="foto1.jpg" alt="Foto especial 1">
+        <img src="foto2.jpg" alt="Foto especial 2">
+        <img src="foto3.jpg" alt="Foto especial 3">
+        <img src="foto4.jpg" alt="Foto especial 4">
+      </div>
+    </div>
+
+    <!-- Mensagem final -->
+    <footer>
+      Para sempre seu 💕<br>
+      — Com todo o meu amor
+    </footer>
   </div>
-
-  <iframe src="https://open.spotify.com/embed/track/1tLBXifMqnSqLZrk1Rsl8n?utm_source=generator&theme=0" frameborder="0"
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-
-  <button class="scroll-btn" onclick="document.getElementById('timeline').scrollIntoView({behavior:'smooth'})">Ver nossa história ❤</button>
-</section>
-
-<!-- Seção 2: Linha do tempo -->
-<section id="timeline">
-  <h1>Nossa História</h1>
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">01/01/2023</div>
-      <div class="timeline-text">O dia em que nos conhecemos.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">14/02/2023</div>
-      <div class="timeline-text">Nosso primeiro encontro especial.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">12/06/2023</div>
-      <div class="timeline-text">O primeiro "Eu te amo".</div>
-    </div>
-  </div>
-  <button class="scroll-btn" onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})">Ver mais momentos</button>
-</section>
-
-<!-- Seção 3: Galeria -->
-<section id="galeria">
-  <h1>Nossa Galeria</h1>
-  <div class="gallery">
-    <img src="foto1.jpg" alt="Foto 1">
-    <img src="foto2.jpg" alt="Foto 2">
-    <img src="foto3.jpg" alt="Foto 3">
-    <img src="foto4.jpg" alt="Foto 4">
-  </div>
-  <button class="scroll-btn" onclick="document.getElementById('final').scrollIntoView({behavior:'smooth'})">Mensagem final</button>
-</section>
-
-<!-- Seção 4: Mensagem final -->
-<section id="final">
-  <h1>Para sempre...</h1>
-  <p class="final-message">Você é e sempre será o meu amor eterno. ❤</p>
-</section>
-
-<script>
-  // Criar pétalas caindo
-  function createPetal(){
-    const petal=document.createElement('div');
-    petal.classList.add('petal');
-    petal.style.width=`${Math.random()*10+5}px`;
-    petal.style.height=petal.style.width;
-    petal.style.left=`${Math.random()*100}vw`;
-    petal.style.background=`rgba(255,182,193,${Math.random()})`;
-    petal.style.animationDuration=`${Math.random()*5+5}s`;
-    document.body.appendChild(petal);
-    setTimeout(()=>petal.remove(),10000);
-  }
-  setInterval(createPetal,300);
-</script>
 </body>
 </html>
