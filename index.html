@@ -25,13 +25,11 @@
     50% { box-shadow: 0 0 25px #ff3399; }
   }
 
-  /* Animação do carrossel */
   @keyframes scroll-left {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 
-  /* Fundo com imagem e overlay animado dark */
   body {
     margin: 0; padding: 0;
     font-family: Georgia, serif;
@@ -42,10 +40,9 @@
     position: relative;
     overflow-x: hidden;
     background-blend-mode: multiply;
-    background-color: #1a0a1f; /* fundo escuro por baixo da imagem */
+    background-color: #1a0a1f;
   }
 
-  /* Overlay escuro semi-transparente */
   body::before {
     content: "";
     position: fixed;
@@ -58,7 +55,6 @@
     z-index: 0;
   }
 
-  /* Conteúdo principal em overlay dark */
   .overlay {
     position: relative;
     background-color: rgba(30, 10, 35, 0.85);
@@ -85,11 +81,29 @@
     text-shadow: 0 0 10px #aa0044, 0 0 20px #ff3399;
   }
 
-  /* Carrossel */
+  /* Efeito máquina de escrever */
+  .typewriter {
+    overflow: hidden;
+    border-right: 3px solid #ff3399;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 6s steps(40, end), blink .7s infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: #ff3399; }
+  }
+
   .imagem {
     margin-top: 20px;
     display: flex;
-    width: 600px; /* tamanho fixo para desktop */
+    width: 600px;
     overflow: hidden;
     border-radius: 15px;
     border: 4px solid #aa0044;
@@ -97,11 +111,10 @@
     cursor: grab;
   }
 
-  /* Faixa que desliza */
   .imagem-track {
     display: flex;
     gap: 30px;
-    min-width: 200%; /* garante espaço para animação */
+    min-width: 200%;
     animation: scroll-left 20s linear infinite;
   }
 
@@ -129,7 +142,7 @@
     transition: box-shadow 0.3s ease;
     box-shadow: 0 0 15px #cc0055;
     width: 300px;
-    max-width: 90vw; /* para mobile */
+    max-width: 90vw;
     height: 80px;
   }
 
@@ -137,7 +150,6 @@
     box-shadow: 0 0 50px #ff3399, 0 0 70px #cc0055;
   }
 
-  /* Responsividade simples */
   @media (max-width: 650px) {
     .imagem {
       width: 90vw;
@@ -157,11 +169,29 @@
       height: 80px;
     }
   }
+
+  /* Pétalas caindo */
+  .petal {
+    position: fixed;
+    top: -10px;
+    background: pink;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fall linear forwards;
+    z-index: 2;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(360deg);
+    }
+  }
 </style>
 </head>
 <body>
   <div class="overlay">
-    <h1>
+    <h1 class="typewriter">
       Amo-te tanto, meu amor... não cante<br>
       O humano coração com mais verdade...<br>
       Amo-te como amigo e como amante<br>
@@ -173,7 +203,6 @@
         <img src="amor.png.jpeg" alt="Minha amada" />
         <img src="fofo.png.jpeg" alt="Imagem fofa" />
         <img src="gif.png.gif" alt="Gif animado" />
-        <!-- Repetir as imagens para o loop contínuo -->
         <img src="amor.png.jpeg" alt="Minha amada" />
         <img src="fofo.png.jpeg" alt="Imagem fofa" />
         <img src="gif.png.gif" alt="Gif animado" />
@@ -188,5 +217,27 @@
       title="Música no Spotify"
     ></iframe>
   </div>
+
+  <script>
+    // Criar pétalas caindo
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.width = `${Math.random() * 10 + 5}px`;
+      petal.style.height = petal.style.width;
+      petal.style.left = `${Math.random() * 100}vw`;
+      petal.style.background = `rgba(255,182,193,${Math.random()})`;
+      petal.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 10000);
+    }
+
+    setInterval(createPetal, 300);
+  </script>
 </body>
 </html>
+
+
